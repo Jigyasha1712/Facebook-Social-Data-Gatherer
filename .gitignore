@@ -1,0 +1,24 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+
+# Environment Variables & Secrets
+.env
+*.env
+Cookies.txt
+*.xlsx
+*.csv
+
+# IDEs
+.idea/
+.vscode/
+
+# Web Drivers & Large Binaries
+*.exe
+*.zip
+*.pptx
