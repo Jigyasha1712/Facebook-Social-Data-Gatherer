@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialBeacon FB — Public Post Engagement & Sentiment Miner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #070913; color: #F1F5F9; min-height: 100vh; }
+        .glass { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.08); }
+        .fb-blue { background-color: #1877F2; }
+    </style>
+</head>
+<body class="selection:bg-blue-600 selection:text-white">
+    <header class="glass sticky top-0 z-50 border-b border-white/10 px-6 py-3.5 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-xl fb-blue flex items-center justify-center text-white text-lg shadow-lg shadow-blue-600/30">
+                <i class="fa-brands fa-facebook-f font-bold"></i>
+            </div>
+            <div>
+                <span class="font-extrabold text-white text-lg tracking-tight">Social<span class="text-blue-500">Beacon</span> FB</span>
+                <p class="text-[11px] text-slate-400">Public Campaign Engagement & Viral Post Telemetry</p>
+            </div>
+        </div>
+        <a href="https://github.com/Jigyasha1712/Facebook-Social-Data-Gatherer" target="_blank" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white border border-slate-700 transition flex items-center space-x-2">
+            <i class="fa-brands fa-github"></i><span>GitHub Repo</span>
+        </a>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-6">
+        <div class="glass p-6 rounded-2xl relative overflow-hidden">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Public Post Reaction & <span class="text-blue-400">Sentiment Analyzer</span></h1>
+            <p class="text-xs sm:text-sm text-slate-300 max-w-2xl">Mine social sentiment, quantify emotional reaction distributions (Likes, Loves, Hahas, Wow, Sad, Angry), and calculate post virality scores.</p>
+        </div>
+
+        <div class="glass p-5 rounded-2xl space-y-4">
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="fb-url" value="https://facebook.com/techinsights/posts/948201" placeholder="Enter Public Post or Page URL" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-blue-300 font-mono focus:outline-none focus:border-blue-500">
+                <button onclick="analyzePost()" class="px-6 py-2.5 rounded-xl fb-blue hover:bg-blue-600 text-white font-bold text-xs shadow-lg shadow-blue-500/30 transition flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-chart-line"></i><span>Extract Engagement</span>
+                </button>
+            </div>
+
+            <!-- Reaction Breakdown -->
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-center font-mono">
+                <div class="p-3 bg-slate-900 rounded-xl border border-white/5">
+                    <span class="text-lg block">👍</span>
+                    <span class="text-xs font-bold text-white">4,820</span>
+                    <span class="text-[9px] text-slate-400 block">Likes</span>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-xl border border-white/5">
+                    <span class="text-lg block">❤️</span>
+                    <span class="text-xs font-bold text-white">2,140</span>
+                    <span class="text-[9px] text-slate-400 block">Love</span>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-xl border border-white/5">
+                    <span class="text-lg block">😆</span>
+                    <span class="text-xs font-bold text-white">420</span>
+                    <span class="text-[9px] text-slate-400 block">Haha</span>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-xl border border-white/5">
+                    <span class="text-lg block">😮</span>
+                    <span class="text-xs font-bold text-white">310</span>
+                    <span class="text-[9px] text-slate-400 block">Wow</span>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-xl border border-white/5">
+                    <span class="text-lg block">😢</span>
+                    <span class="text-xs font-bold text-white">18</span>
+                    <span class="text-[9px] text-slate-400 block">Sad</span>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-xl border border-white/5">
+                    <span class="text-lg block">😡</span>
+                    <span class="text-xs font-bold text-white">4</span>
+                    <span class="text-[9px] text-slate-400 block">Angry</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="glass p-5 rounded-2xl space-y-3">
+                <h3 class="font-bold text-white text-sm">Sentiment Polarization</h3>
+                <div class="space-y-2 font-mono text-xs">
+                    <div>
+                        <div class="flex justify-between text-slate-300 mb-1">
+                            <span>Positive Affinity:</span>
+                            <span class="text-emerald-400 font-bold">92.4%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 rounded-full h-2">
+                            <div class="bg-emerald-400 h-2 rounded-full" style="width: 92.4%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-slate-300 mb-1">
+                            <span>Negative Sentiment:</span>
+                            <span class="text-rose-400 font-bold">0.8%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 rounded-full h-2">
+                            <div class="bg-rose-400 h-2 rounded-full" style="width: 0.8%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass p-5 rounded-2xl space-y-3">
+                <h3 class="font-bold text-white text-sm">Viral Distribution Score</h3>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-4xl font-extrabold text-blue-400 font-mono">88/100</div>
+                        <span class="text-xs text-slate-400 font-mono">High organic reach velocity</span>
+                    </div>
+                    <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-950 text-blue-400 border border-blue-500/40">VIRAL TRACTION</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
